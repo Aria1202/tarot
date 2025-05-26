@@ -1,0 +1,103 @@
+body {
+  font-family: "微軟正黑體", sans-serif;
+  background-color: #f9f8f6;
+  text-align: center;
+  padding: 30px;
+}
+
+h1 {
+  color: #6b4b3e;
+}
+
+#card-container {
+  position: relative;
+  width: 600px;
+  height: 300px;
+  margin: 0 auto;
+  perspective: 1000px;
+}
+
+.card {
+  width: 120px;
+  height: 200px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-origin: bottom center;
+  cursor: pointer;
+}
+
+.card-inner {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+.card.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.card-back {
+  background-image: url('https://png.pngtree.com/thumb_back/fh260/background/20210831/pngtree-mystical-boho-tarot-card-image_774913.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.card-front {
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  padding: 5px;
+}
+
+.card-front img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  transform: rotate(0deg);
+}
+
+.description {
+  font-size: 12px;
+  padding-top: 5px;
+}
+
+#hint {
+  margin-top: 30px;
+  color: #888;
+}
+.card.flipped {
+  transform: translateY(-80px) rotate(var(--angle, 0deg)) translateX(-50%);
+  z-index: 999; /* 抽出的牌要顯示在最上層 */
+}
+#selected-cards {
+  position: absolute;
+  top: 50px;
+  right: 50px;
+  width: 140px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+#selected-cards .card {
+  transform: none !important; /* 重置原本旋轉角度 */
+  position: relative;
+  left: 0;
+  top: 0;
+}
+
